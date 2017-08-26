@@ -26,7 +26,13 @@
 *.a
 *.lib
 
+# Compressed files which will be sent to finish the task
+*.zip
+
 # Executables
 *.exe
 *.out
 *.app
+
+# Matlab automatic files saved as garbage
+*.m~
