@@ -1,0 +1,22 @@
+%
+% BioInspired Computing - UnB 2/2017
+% Jessé Barreto - 17/0067033
+% Assignment 1 - Implementation of benchmark cost functions.
+%
+
+function [result, fx] = bioInspiredCostFunctions(functionName, range, dimensions)
+    switch functionName
+        case 'sphere'
+            
+            return 
+        case 'quadric'
+        case 'rastrigin'
+        case 'rosenbrock'
+            disp('zero')
+        case 1
+            disp('positive one')
+        otherwise
+            disp('other value')
+    end
+
+end
