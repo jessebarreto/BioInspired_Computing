@@ -1,12 +1,12 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % BioInspired Computing - UnB 2/2017
 % Jessé Barreto - 17/0067033
-% Assignment 1 - Plot implemented cost functions.
+% Assignment 1 - Plot implemented cost functions in 2-D.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 clc;
 close all;
-clear all;
+clear;
 
 % Plot characteristics
 dimension = 2;
@@ -111,3 +111,136 @@ view(20,40);
 mesh(space{1}, space{2}, schwefel);
 title('Schwefel Cost Function - $$837.9658 - X sin(\sqrt{|X|}) - Y sin(\sqrt{|Y|})$$','Interpreter','latex');
 saveas(figure(7), 'Figures/Schwefel.png');
+
+% Plot Bukin6 Cost Function
+functionName = string('bukin6');
+[space, bukin6] = costFunction(functionName, dimension, ranges, npoints);
+figure(8);
+hold on;
+xlabel('X');
+ylabel('Y');
+zlabel('Cost Function Value');
+contour(space{1}, space{2}, bukin6);
+view(20,40);
+mesh(space{1}, space{2}, bukin6);
+title('Bukin6 Cost Function - $$100 * \sqrt{\mid Y - 0.01 X^2 \mid} + 0.01 \mid X + 10 \mid$$','Interpreter','latex');
+saveas(figure(8), 'Figures/Bukin6.png');
+
+% Plot Cross-In-Tray Cost Function
+functionName = string('cross-in-tray');
+[space, crossintray] = costFunction(functionName, dimension, ranges, npoints);
+figure(9);
+hold on;
+xlabel('X');
+ylabel('Y');
+zlabel('Cost Function Value');
+contour(space{1}, space{2}, crossintray);
+view(20,40);
+mesh(space{1}, space{2}, crossintray);
+title('Cross-In-Tray Cost Function - $$-0.0001 \big( \mid sin(X) sin(Y) e^{\mid 100 - \frac{(\sqrt{X^2 + Y^2}}{\pi} \mid} \mid + 1 \big)^{0.1}$$','Interpreter','latex');
+saveas(figure(9), 'Figures/CrossInTray.png');
+
+% Plot Drop-Wave Cost Function
+functionName = string('drop-wave');
+ranges = [-5, 5; -5, 5];
+[space, dropwave] = costFunction(functionName, dimension, ranges, npoints);
+figure(10);
+hold on;
+xlabel('X');
+ylabel('Y');
+zlabel('Cost Function Value');
+contour(space{1}, space{2}, dropwave);
+view(20,40);
+mesh(space{1}, space{2}, dropwave);
+title('Drop-Wave Cost Function - $$-\frac{1 + cos(12 \sqrt{X^2 + Y^2})}{0.5 (X^2 + Y^2) + 2}$$','Interpreter','latex');
+saveas(figure(10), 'Figures/DropWave.png');
+
+% Plot Eggholder Cost Function
+functionName = string('eggholder');
+ranges = [-512, 512;-512, 512];
+[space, eggholder] = costFunction(functionName, dimension, ranges, npoints);
+figure(11);
+hold on;
+xlabel('X');
+ylabel('Y');
+zlabel('Cost Function Value');
+contour(space{1}, space{2}, eggholder);
+view(20,40);
+mesh(space{1}, space{2}, eggholder);
+title('EggHolder Cost Function - $$-(Y + 47) \sin\bigg(\sqrt{\mid Y + \frac{X}{2} + 47 \mid}\bigg) - X \sin\bigg(\sqrt{\mid X - (Y + 47) \mid }\bigg)$$','Interpreter','latex');
+saveas(figure(11), 'Figures/EggHolder.png');
+
+% Plot Griewank Cost Function
+functionName = string('griewank');
+ranges = [-10, 10;-10, 10];
+[space, griewank] = costFunction(functionName, dimension, ranges, npoints);
+figure(12);
+hold on;
+xlabel('X');
+ylabel('Y');
+zlabel('Cost Function Value');
+contour(space{1}, space{2}, griewank);
+view(20,40);
+mesh(space{1}, space{2}, griewank);
+title('Griewank Cost Function - $$\sum_{i=1}^{N}\frac{{X_i}^2}{4000} - \prod_{i=1}^{N}\cos\bigg( \frac{X_i}{\sqrt{i}}\bigg) + 1$$','Interpreter','latex');
+saveas(figure(12), 'Figures/Griewank.png');
+
+% Plot Holder Table Cost Function
+functionName = string('holdertable');
+ranges = [-10, 10;-10, 10];
+[space, holdertable] = costFunction(functionName, dimension, ranges, npoints);
+figure(13);
+hold on;
+xlabel('X');
+ylabel('Y');
+zlabel('Cost Function Value');
+contour(space{1}, space{2}, holdertable);
+view(20,40);
+mesh(space{1}, space{2}, holdertable);
+title('Holder Table Cost Function - $$- \mid \sin(X) cos(Y) e^{\mid 1 - \frac{\sqrt{X^2 + Y^2}}{\pi} \mid}\mid$$','Interpreter','latex');
+saveas(figure(13), 'Figures/HolderTable.png');
+
+% Plot Levy Cost Function
+functionName = string('levy');
+ranges = [-10, 10;-10, 10];
+[space, levy] = costFunction(functionName, dimension, ranges, npoints);
+figure(14);
+hold on;
+xlabel('X');
+ylabel('Y');
+zlabel('Cost Function Value');
+contour(space{1}, space{2}, levy);
+view(20,40);
+mesh(space{1}, space{2}, levy);
+title('Levy Cost Function','Interpreter','latex');
+saveas(figure(14), 'Figures/Levy.png');
+
+% Plot Michalewicz Cost Function
+functionName = string('michalewicz');
+ranges = [-pi, pi;-pi, pi];
+[space, michalewicz] = costFunction(functionName, dimension, ranges, npoints);
+figure(15);
+hold on;
+xlabel('X');
+ylabel('Y');
+zlabel('Cost Function Value');
+contour(space{1}, space{2}, michalewicz);
+view(20,40);
+mesh(space{1}, space{2}, michalewicz);
+title('Michalewicz Cost Function','Interpreter','latex');
+saveas(figure(15), 'Figures/Michalewicz.png');
+
+% Plot Styblinski-Tang  Cost Function
+functionName = string('styblinskitang ');
+ranges = [-5, 5;-5, 5];
+[space, styblinskitang] = costFunction(functionName, dimension, ranges, npoints);
+figure(16);
+hold on;
+xlabel('X');
+ylabel('Y');
+zlabel('Cost Function Value');
+contour(space{1}, space{2}, styblinskitang);
+view(20,40);
+mesh(space{1}, space{2}, styblinskitang);
+title('Styblinski-Tang Cost Function','Interpreter','latex');
+saveas(figure(16), 'Figures/StyblinskiTang .png');

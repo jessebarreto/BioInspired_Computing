@@ -9,6 +9,9 @@
 % Function results:
 % symbolicSpace - As a vector of symbolic variables;
 % symbolicFunction - As a symbolic function which depends on the variables in symbolic space;
+%
+% Bibliography: CEC2010
+%               https://www.sfu.ca/~ssurjano/optimization.html
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
@@ -49,6 +52,69 @@ elseif functionName == string('schwefel')
     for i=1:dimension
        F = F - X(i) * sin(sqrt(abs(X(i)))); 
     end
+elseif functionName == string('bukin6')
+    if dimension == 2
+        F = 100 * sqrt(abs(X(2) - 0.01 * X(1)^2)) + 0.01 * abs (X(1) + 10);
+    else
+       disp('This function has to have 2-dimensions.') 
+       pause;
+    end
+elseif functionName == string('cross-in-tray')
+    if dimension == 2
+        F = -0.0001 * (abs(sin(X(1)) * sin(X(2)) * exp(abs(100 - (sqrt(X(1)^2 + X(2)^2))/(pi)))) + 1)^0.1;
+    else
+        disp('This function has to have 2-dimensions.') 
+        pause;
+    end
+elseif functionName == string('drop-wave')
+    if dimension == 2
+        F = -(1 + cos(12 * sqrt(X(1)^2 + X(2)^2)))/(0.5 * (X(1)^2 + X(2)^2) + 2);
+    else
+        disp('This function has to have 2-dimensions.') 
+        pause;
+    end
+elseif functionName == string('eggholder')
+    if dimension == 2
+        F = -(X(2) + 47) * sin(sqrt(abs(X(2) + X(1)/2 + 47))) - X(1) * sin(sqrt(abs(X(1) - (X(2) + 47))));
+    else
+        disp('This function has to have 2-dimensions.') 
+        pause;
+    end
+elseif functionName == string('griewank')
+    S1 = 0;
+    P1 = 1;
+    for i=1:dimension
+       S1 = S1 + (X(i)^2);
+       P1 = P1 * cos(X(i) / sqrt(i));
+    end
+    F = S1 / 4000 - P1 + 1;
+elseif functionName == string('holdertable')
+    if dimension == 2
+        F = -abs(sin(X(1)) * cos(X(2)) * exp(abs(1 - sqrt(X(1)^2 + X(2)^2) / pi)));
+    else
+        disp('This function has to have 2-dimensions.') 
+        pause;
+    end
+elseif functionName == string('levy')
+    S = 0;
+    for i=1:dimension-1
+        Wi = 1 + (X(i) - 1) / 4;
+        S = S + (Wi - 1)^2 * (1 + 10 * sin(pi * Wi + 1)^2);
+    end
+    Wd = 1 + (X(dimension) - 1) / 4;
+    F = S + sin(pi * (1 + (X(1) - 1) / 4))^2 + (Wd - 1)^2 * (1 + sin(2 * pi * Wd)^2);
+elseif functionName == string('michalewicz')
+    m = 10;
+    F = 0;
+    for i=1:dimension
+        F = F - sin(X(i)) * sin((i * X(i)^2) / 2)^(2 * m);
+    end
+elseif functionName == string('styblinskitang')
+    F = 0;
+    for i=1:dimension
+        F = F + (X(i)^4 - 16 * X(i)^2 + 5 * X(i));
+    end
+    F = 0.5 * F;
 else % Quadric
     F = 0;
     for i=1:dimension
