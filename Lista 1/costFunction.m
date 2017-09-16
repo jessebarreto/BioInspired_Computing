@@ -56,7 +56,7 @@ function [res, optimalRange, globalMin] = costFunction(functionName, x)
             elseif (dim == 5)
                 globalMin = gmin(2);
             elseif (dim > 5 && dim < 9)
-                globalMin = dim * (gmin(3) - gmin(2)) / 4;
+                globalMin = dim * (gmin(2) - gmin(1)) / 3;
             elseif (dim == 9)
                 globalMin = gmin(3);
             else

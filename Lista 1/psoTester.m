@@ -44,6 +44,8 @@ for s = 1:numel(S)
 	for d = 1:numel(N)
         dim = N(d);
 		for f = 1:numel(functionNames)
+            
+            f = 5;
             functionName = functionNames(f);
             
             allValues = zeros(maxIterations, numberOfExperimentsPerParameters);
@@ -83,7 +85,7 @@ for s = 1:numel(S)
        			
 				xlabel('Number of iterations','FontSize',12);
 				ylabel('best fitness function','FontSize',12);
-				axis([0 maxIterations 1E-10 1E2]);
+% 				axis([0 maxIterations 1E-10 1E2]);
 				title('Curva de convergencia PSO S=' + string(npar) + ' N=' + string(dim) + ' ' + string(functionName));
                 
                 % Saves individual results to later analysis
@@ -110,8 +112,8 @@ for s = 1:numel(S)
     end 
 end
 
-save('ResultsPSO/averages_' + timedate + '.mat', averages);
-save('ResultsPSO/medians_' + timedate + '.mat', medians);
-save('ResultsPSO/mins_' + timedate + '.mat', minimums);
-save('ResultsPSO/stdDevs_' + timedate + '.mat', stdDevs);
-save('ResultsPSO/goalReachPercentage_' + timedate + '.mat', goalReachPercentage);
+save(char(string(string('ResultsPSO/averages_') + string(timedate) + string('.mat'))), 'averages');
+save(char(string(string('ResultsPSO/medians_') + string(timedate) + string('.mat'))), 'medians');
+save(char(string(string('ResultsPSO/mins_') + string(timedate) + string('.mat'))), 'minimums');
+save(char(string(string('ResultsPSO/stdDevs_') + string(timedate) + string('.mat'))), 'stdDevs');
+save(char(string(string('ResultsPSO/goalReachPercentage_') + string(timedate) + string('.mat'))), 'goalReachPercentage');
