@@ -7,8 +7,8 @@
 % functionName - The function name as a string.
 % dimension - The search space dimension.
 % Function results:
-% symbolicSpace - As a vector of symbolic variables;
 % symbolicFunction - As a symbolic function which depends on the variables in symbolic space;
+% symbolicSpace - As a vector of symbolic variables;
 %
 % Bibliography: CEC2010
 %               https://www.sfu.ca/~ssurjano/optimization.html

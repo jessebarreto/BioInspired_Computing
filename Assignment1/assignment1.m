@@ -15,7 +15,7 @@ npoints = 100;
 
 % Plot Spheric Cost Function
 functionName = string('sphere');
-[space, sphere] = costFunction(functionName, dimension, ranges, npoints);
+[space, sphere] = costFunctionSymNum(functionName, dimension, ranges, npoints);
 figure(1);
 hold on;
 xlabel('X');
@@ -29,7 +29,7 @@ saveas(figure(1), 'Figures/Sphere.png');
 
 % Plot Quadric Cost Function
 functionName = string('quadric');
-[space, quadric] = costFunction(functionName, dimension, ranges, npoints);
+[space, quadric] = costFunctionSymNum(functionName, dimension, ranges, npoints);
 figure(2);
 hold on;
 xlabel('X');
@@ -43,7 +43,7 @@ saveas(figure(2), 'Figures/Quadric.png');
 
 % Plot Elliptic Cost Function
 functionName = string('elliptic');
-[space, elliptic] = costFunction(functionName, dimension, ranges, npoints);
+[space, elliptic] = costFunctionSymNum(functionName, dimension, ranges, npoints);
 figure(3);
 hold on;
 xlabel('X');
@@ -57,7 +57,7 @@ saveas(figure(3), 'Figures/Elliptic.png');
 
 % Plot Rastrigin Cost Function
 functionName = string('rastrigin');
-[space, rastrigin] = costFunction(functionName, dimension, ranges, npoints);
+[space, rastrigin] = costFunctionSymNum(functionName, dimension, ranges, npoints);
 figure(4);
 hold on;
 xlabel('X');
@@ -71,7 +71,7 @@ saveas(figure(4), 'Figures/Rastrigin.png');
 
 % Plot Rosenbrock Cost Function
 functionName = string('rosenbrock');
-[space, rosenbrock] = costFunction(functionName, dimension, ranges, npoints);
+[space, rosenbrock] = costFunctionSymNum(functionName, dimension, ranges, npoints);
 figure(5);
 hold on;
 xlabel('X');
@@ -86,7 +86,7 @@ saveas(figure(5), 'Figures/Rosenbrock.png');
 
 % Plot Ackley Cost Function
 functionName = string('ackley');
-[space, ackley] = costFunction(functionName, dimension, ranges, npoints);
+[space, ackley] = costFunctionSymNum(functionName, dimension, ranges, npoints);
 figure(6);
 hold on;
 xlabel('X');
@@ -100,7 +100,8 @@ saveas(figure(6), 'Figures/Ackley.png');
 
 % Plot Schwefel Cost Function
 functionName = string('schwefel');
-[space, schwefel] = costFunction(functionName, dimension, ranges, npoints);
+ranges = [-500 500; -500 500];
+[space, schwefel] = costFunctionSymNum(functionName, dimension, ranges, npoints);
 figure(7);
 hold on;
 xlabel('X');
@@ -114,7 +115,8 @@ saveas(figure(7), 'Figures/Schwefel.png');
 
 % Plot Bukin6 Cost Function
 functionName = string('bukin6');
-[space, bukin6] = costFunction(functionName, dimension, ranges, npoints);
+ranges = [-10 10; -10 10];
+[space, bukin6] = costFunctionSymNum(functionName, dimension, ranges, npoints);
 figure(8);
 hold on;
 xlabel('X');
@@ -128,7 +130,7 @@ saveas(figure(8), 'Figures/Bukin6.png');
 
 % Plot Cross-In-Tray Cost Function
 functionName = string('cross-in-tray');
-[space, crossintray] = costFunction(functionName, dimension, ranges, npoints);
+[space, crossintray] = costFunctionSymNum(functionName, dimension, ranges, npoints);
 figure(9);
 hold on;
 xlabel('X');
@@ -143,7 +145,7 @@ saveas(figure(9), 'Figures/CrossInTray.png');
 % Plot Drop-Wave Cost Function
 functionName = string('drop-wave');
 ranges = [-5, 5; -5, 5];
-[space, dropwave] = costFunction(functionName, dimension, ranges, npoints);
+[space, dropwave] = costFunctionSymNum(functionName, dimension, ranges, npoints);
 figure(10);
 hold on;
 xlabel('X');
@@ -158,7 +160,7 @@ saveas(figure(10), 'Figures/DropWave.png');
 % Plot Eggholder Cost Function
 functionName = string('eggholder');
 ranges = [-512, 512;-512, 512];
-[space, eggholder] = costFunction(functionName, dimension, ranges, npoints);
+[space, eggholder] = costFunctionSymNum(functionName, dimension, ranges, npoints);
 figure(11);
 hold on;
 xlabel('X');
@@ -172,8 +174,8 @@ saveas(figure(11), 'Figures/EggHolder.png');
 
 % Plot Griewank Cost Function
 functionName = string('griewank');
-ranges = [-10, 10;-10, 10];
-[space, griewank] = costFunction(functionName, dimension, ranges, npoints);
+ranges = [-25, 25;-25, 25];
+[space, griewank] = costFunctionSymNum(functionName, dimension, ranges, npoints);
 figure(12);
 hold on;
 xlabel('X');
@@ -188,7 +190,7 @@ saveas(figure(12), 'Figures/Griewank.png');
 % Plot Holder Table Cost Function
 functionName = string('holdertable');
 ranges = [-10, 10;-10, 10];
-[space, holdertable] = costFunction(functionName, dimension, ranges, npoints);
+[space, holdertable] = costFunctionSymNum(functionName, dimension, ranges, npoints);
 figure(13);
 hold on;
 xlabel('X');
@@ -203,7 +205,7 @@ saveas(figure(13), 'Figures/HolderTable.png');
 % Plot Levy Cost Function
 functionName = string('levy');
 ranges = [-10, 10;-10, 10];
-[space, levy] = costFunction(functionName, dimension, ranges, npoints);
+[space, levy] = costFunctionSymNum(functionName, dimension, ranges, npoints);
 figure(14);
 hold on;
 xlabel('X');
@@ -218,7 +220,7 @@ saveas(figure(14), 'Figures/Levy.png');
 % Plot Michalewicz Cost Function
 functionName = string('michalewicz');
 ranges = [-pi, pi;-pi, pi];
-[space, michalewicz] = costFunction(functionName, dimension, ranges, npoints);
+[space, michalewicz] = costFunctionSymNum(functionName, dimension, ranges, npoints);
 figure(15);
 hold on;
 xlabel('X');
@@ -233,7 +235,7 @@ saveas(figure(15), 'Figures/Michalewicz.png');
 % Plot Styblinski-Tang  Cost Function
 functionName = string('styblinskitang ');
 ranges = [-5, 5;-5, 5];
-[space, styblinskitang] = costFunction(functionName, dimension, ranges, npoints);
+[space, styblinskitang] = costFunctionSymNum(functionName, dimension, ranges, npoints);
 figure(16);
 hold on;
 xlabel('X');

@@ -14,7 +14,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-function [spaces, numericFunction] = costFunction(functionName, dimension, ranges, npoints)
+function [spaces, numericFunction] = costFunctionSymNum(functionName, dimension, ranges, npoints)
 
 % Symbolic
 [symbolicFunction, symbolicSpace] = costFunctionSymbolic(functionName, dimension);
