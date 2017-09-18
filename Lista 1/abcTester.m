@@ -23,7 +23,7 @@ numberOfExperimentsPerParameters = 32;
 maxIterations = 1000;
 
 S = [10 15 20]; %number of particles
-N = [6 9 13 18 22]; %number of dimensions
+N = [6 9 13 18 22]; %number of dimensionsensions
 functionNames = [string('griewank') string('rastrigin') string('rosenbrock') string('ackley') string('schwefel') string('michalewicz') string('quadric') string('sphere')];
 
 figureNumber = 1;
@@ -39,43 +39,32 @@ goalReachPercentage = zeros(numel(S), numel(N), numel(functionNames));
 YMDHMS = clock;
 timedate = [num2str(YMDHMS(1)) '-' num2str(YMDHMS(2),'%02d') '-' num2str(YMDHMS(3),'%02d') '_' num2str(YMDHMS(4),'%02d') '-' num2str(YMDHMS(5),'%02d') '-' num2str(floor(YMDHMS(6)),'%02d')];
 
-for s = 1:numel(S)
+for s = 1:1
     npar = S(s);
-	for d = 1:numel(N)
-        dim = N(d);
-		for f = 1:numel(functionNames)
+	for d = 1:1
+        dimensions = N(d);
+		for f = 1:1
             functionName = functionNames(f);
             
             allValues = zeros(maxIterations, numberOfExperimentsPerParameters);
             bestValues = zeros(numberOfExperimentsPerParameters, 1);
-            bestPositions = zeros(numberOfExperimentsPerParameters, dim);
+            bestPositions = zeros(numberOfExperimentsPerParameters, dimensions);
             times = zeros(numberOfExperimentsPerParameters, 1);
             
             % Obtain the range domain for the function
-            [res, searchSpace, globalMin] = costFunction(functionName, zeros(dim, 1));
-
-            % Direction
-            dir = 1; %direction
+            [res, searchSpace, globalMin] = costFunction(functionName, zeros(dimensions, 1));
 
             % Threshold
             threshold = globalMin + 0.01;
 
-            % Iterations Weights
-            initialWeight = 0.9;
-            finalWeight = 0.1;
-            weightValues = linspace(initialWeight, finalWeight, maxIterations);
-
-            % Max speed is half the range space
-            vMax = abs(searchSpace(1,2)-searchSpace(1,1)) * .5;
-            vInitial = vMax / 3;
-
-            % Cognitive Coefficients
-            c1 = 2.05;
-            c2 = 2.05;
+            % ABC Parameters
+            colonySize = npar;
+            foodSourceSize = colonySize / 2;
+            trialsLimits = 20;
             
             % Run all experiments
 			for experiment = 1:numberOfExperimentsPerParameters
-				[spentTime, bestMinimumValue, bestMinimumPosition, bestMinimumValues] = psoFunction(functionName, searchSpace, dim, npar, maxIterations, threshold, dir, vInitial, vMax, initialWeight, finalWeight, c1, c2);
+				[spentTime, bestMinimumValue, bestMinimumPosition, bestMinimumValues] = abcFunction(functionName, searchSpace, dimensions, maxIterations, threshold, colonySize, foodSourceSize, trialsLimits);
        			
                 hold on
        			figure(figureNumber);
@@ -83,8 +72,7 @@ for s = 1:numel(S)
        			
 				xlabel('Number of iterations','FontSize',12);
 				ylabel('best fitness function','FontSize',12);
-% 				axis([0 maxIterations 1E-10 1E2]);
-				title('Curva de convergencia PSO S=' + string(npar) + ' N=' + string(dim) + ' ' + string(functionName));
+				title('Curva de convergencia ABC S=' + string(npar) + ' N=' + string(dimensions) + ' ' + string(functionName));
                 
                 % Saves individual results to later analysis
                 times(experiment, :) = spentTime;
@@ -94,9 +82,9 @@ for s = 1:numel(S)
             end
             
             plot2 = semilogy(mean(allValues, 2), '-b'); 
-            legend(plot2, 'PSO Average');
+            legend(plot2, 'ABC Average');
             
-            saveas(figure(figureNumber), char(string(string('ResultsPSO/PSO_S=') + string(npar) + string('_N=') + string(dim) + string('_') + string(functionName) + string('_') + string(timedate) + string('.fig'))));
+            saveas(figure(figureNumber), char(string(string('ResultsABC/ABC_S=') + string(npar) + string('_N=') + string(dimensions) + string('_') + string(functionName) + string('_') + string(timedate) + string('.fig'))));
             
             % saves data
             averages(s, d, f) = mean(bestValues);
@@ -110,8 +98,8 @@ for s = 1:numel(S)
     end 
 end
 
-save(char(string(string('ResultsPSO/averages_') + string(timedate) + string('.mat'))), 'averages');
-save(char(string(string('ResultsPSO/medians_') + string(timedate) + string('.mat'))), 'medians');
-save(char(string(string('ResultsPSO/mins_') + string(timedate) + string('.mat'))), 'minimums');
-save(char(string(string('ResultsPSO/stdDevs_') + string(timedate) + string('.mat'))), 'stdDevs');
-save(char(string(string('ResultsPSO/goalReachPercentage_') + string(timedate) + string('.mat'))), 'goalReachPercentage');
+save(char(string(string('ResultsABC/averages_') + string(timedate) + string('.mat'))), 'averages');
+save(char(string(string('ResultsABC/medians_') + string(timedate) + string('.mat'))), 'medians');
+save(char(string(string('ResultsABC/mins_') + string(timedate) + string('.mat'))), 'minimums');
+save(char(string(string('ResultsABC/stdDevs_') + string(timedate) + string('.mat'))), 'stdDevs');
+save(char(string(string('ResultsABC/goalReachPercentage_') + string(timedate) + string('.mat'))), 'goalReachPercentage');
