@@ -22,11 +22,9 @@ numberOfExperimentsPerParameters = 32;
 % Max number of iterations
 maxIterations = 1000;
 
-S = [10 15 20]; %number of particles
+S = [10 16 20]; %number of particles
 N = [6 9 13 18 22]; %number of dimensionsensions
-functionNames = [string('griewank') string('rastrigin') string('rosenbrock') string('ackley') string('schwefel') string('michalewicz') string('quadric') string('sphere')];
-
-figureNumber = 1;
+functionNames = [string('quadric') string('sphere') string('griewank') string('rastrigin') string('rosenbrock') string('ackley') string('schwefel') string('michalewicz')];
 
 % Variables which will hold all results
 averages = zeros(numel(S), numel(N), numel(functionNames));
@@ -39,11 +37,13 @@ goalReachPercentage = zeros(numel(S), numel(N), numel(functionNames));
 YMDHMS = clock;
 timedate = [num2str(YMDHMS(1)) '-' num2str(YMDHMS(2),'%02d') '-' num2str(YMDHMS(3),'%02d') '_' num2str(YMDHMS(4),'%02d') '-' num2str(YMDHMS(5),'%02d') '-' num2str(floor(YMDHMS(6)),'%02d')];
 
-for s = 1:1
+figureNumber = 1;
+
+for s = 1:numel(S)
     npar = S(s);
-	for d = 1:1
+	for d = 1:numel(N)
         dimensions = N(d);
-		for f = 1:1
+		for f = 1:numel(functionNames)
             functionName = functionNames(f);
             
             allValues = zeros(maxIterations, numberOfExperimentsPerParameters);
@@ -66,8 +66,8 @@ for s = 1:1
 			for experiment = 1:numberOfExperimentsPerParameters
 				[spentTime, bestMinimumValue, bestMinimumPosition, bestMinimumValues] = abcFunction(functionName, searchSpace, dimensions, maxIterations, threshold, colonySize, foodSourceSize, trialsLimits);
        			
-                hold on
        			figure(figureNumber);
+                hold on
                 semilogy(bestMinimumValues,'-.r');
        			
 				xlabel('Number of iterations','FontSize',12);
@@ -85,6 +85,7 @@ for s = 1:1
             legend(plot2, 'ABC Average');
             
             saveas(figure(figureNumber), char(string(string('ResultsABC/ABC_S=') + string(npar) + string('_N=') + string(dimensions) + string('_') + string(functionName) + string('_') + string(timedate) + string('.fig'))));
+            close(figureNumber);
             
             % saves data
             averages(s, d, f) = mean(bestValues);
@@ -93,7 +94,6 @@ for s = 1:1
             stdDevs(s, d, f) = std2(bestValues);
             goalReachPercentage(s, d, f) = sum(bestValues < threshold) / numberOfExperimentsPerParameters;
             
-            figureNumber = figureNumber + 1;
 		end
     end 
 end

@@ -47,21 +47,18 @@ function [res, optimalRange, globalMin] = costFunction(functionName, x)
             res = 418.9829 * dim - sum(x .* sin(sqrt(abs(x))));
         case 'michalewicz'
             gmin = [-1.8013 -4.687658 -9.66015];
-            if (dim < 2)
-                globalMin = dim * (gmin(2) - gmin(1)) / 3;
-            elseif (dim == 2)
+            if (dim == 2)
                 globalMin = gmin(1);
-            elseif (dim > 2 && dim < 5)
-                globalMin = dim * (gmin(2) - gmin(1)) / 3;
             elseif (dim == 5)
                 globalMin = gmin(2);
-            elseif (dim > 5 && dim < 9)
-                globalMin = dim * (gmin(2) - gmin(1)) / 3;
             elseif (dim == 9)
                 globalMin = gmin(3);
             else
-                globalMin = dim * (gmin(3) - gmin(2)) / 4;
+                % globalMin = -.04014338095 * dim*dim - .6811156667 * dim - .2784951429;
+                globalMin = 4.761757732e-4 * dim*dim - 1.04728622 * dim + 3.465257226e-1 + 0.63; %Max Error in Regression
+                % globalMin = ((gmin(2) - gmin(1)) / 3) * dim +;
             end
+            
             optimalRange = repmat([0 pi], dim, 1);
             m = 10;
             dims = 1:dim;

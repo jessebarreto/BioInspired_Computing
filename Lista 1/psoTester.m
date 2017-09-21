@@ -12,8 +12,8 @@
 % Exportar o grafico como pdf
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-clear all;
 close all;
+clear all;
 clc;
 
 % PARAMETERS
@@ -24,7 +24,7 @@ maxIterations = 1000;
 
 S = [10 15 20]; %number of particles
 N = [6 9 13 18 22]; %number of dimensions
-functionNames = [string('griewank') string('rastrigin') string('rosenbrock') string('ackley') string('schwefel') string('michalewicz') string('quadric') string('sphere')];
+functionNames = [string('quadric') string('sphere') string('griewank') string('rastrigin') string('rosenbrock') string('ackley') string('schwefel') string('michalewicz')];
 
 figureNumber = 1;
 
@@ -59,6 +59,9 @@ for s = 1:numel(S)
 
             % Threshold
             threshold = globalMin + 0.01;
+            if f ~= 8 %Michalewisk
+               threshold = globalMin + dim * 0.01;
+            end
 
             % Iterations Weights
             initialWeight = 0.9;
@@ -74,18 +77,19 @@ for s = 1:numel(S)
             c2 = 2.05;
             
             % Run all experiments
-			for experiment = 1:numberOfExperimentsPerParameters
-				[spentTime, bestMinimumValue, bestMinimumPosition, bestMinimumValues] = psoFunction(functionName, searchSpace, dim, npar, maxIterations, threshold, dir, vInitial, vMax, initialWeight, finalWeight, c1, c2);
-       			
-                hold on
-       			figure(figureNumber);
-                semilogy(bestMinimumValues,'-.r');
-       			
-				xlabel('Number of iterations','FontSize',12);
-				ylabel('best fitness function','FontSize',12);
-% 				axis([0 maxIterations 1E-10 1E2]);
-				title('Curva de convergencia PSO S=' + string(npar) + ' N=' + string(dim) + ' ' + string(functionName));
-                
+            for experiment = 1:numberOfExperimentsPerParameters
+                [spentTime, bestMinimumValue, bestMinimumPosition, bestMinimumValues] = psoFunction(functionName, searchSpace, dim, npar, maxIterations, threshold, dir, vInitial, vMax, initialWeight, finalWeight, c1, c2);
+
+                figure(figureNumber);
+                set(gcf,'Visible', 'off');
+                hold on;
+                plot(bestMinimumValues,'-.r');
+
+                xlabel('Number of iterations','FontSize',12);
+                ylabel('best fitness function','FontSize',12);
+                % 				axis([0 maxIterations 1E-10 1E2]);
+                title('Curva de convergencia PSO S=' + string(npar) + ' N=' + string(dim) + ' ' + string(functionName));
+
                 % Saves individual results to later analysis
                 times(experiment, :) = spentTime;
                 bestPositions(experiment, :) = bestMinimumPosition;
@@ -93,8 +97,8 @@ for s = 1:numel(S)
                 allValues(:, experiment) = bestMinimumValues;
             end
             
-            plot2 = semilogy(mean(allValues, 2), '-b'); 
-            legend(plot2, 'PSO Average');
+            plotFinal = plot(mean(allValues, 2), '-b'); 
+            legend(plotFinal, 'PSO Average');
             
             saveas(figure(figureNumber), char(string(string('ResultsPSO/PSO_S=') + string(npar) + string('_N=') + string(dim) + string('_') + string(functionName) + string('_') + string(timedate) + string('.fig'))));
             

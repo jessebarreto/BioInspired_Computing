@@ -42,7 +42,7 @@ range = repmat((searchSpace(:, 2) - searchSpace(:, 1))', [foodSourceSize 1]);
 lower = repmat(searchSpace(:, 1)', [foodSourceSize 1]);
 foodPositions = rand(foodSourceSize, dimensions) .* range + lower;
 
-foodValues = costFunction(costFunctionName, foodPositions');
+[foodValues functionSearchSpace globalMin] = costFunction(costFunctionName, foodPositions');
 
 % reset the number of trials
 trial = zeros(1, foodSourceSize);
@@ -96,13 +96,16 @@ for k = 1:maxIter
     %/*For example prob(i)=fitness(i)/sum(fitness)*/
     %/*or in a way used in the metot below prob(i)=a*fitness(i)/max(fitness)+b*/
     %/*probability values are calculated by using fitness values and normalized by dividing maximum fitness value*/
-    probabilities = (0.9 * foodValues ./ (max(foodValues) + 1));
+    % probabilities = foodValues ./ sum(foodValues);
+    % b = 2 * abs(globalMin); probabilities = (0.9 .* (foodValues + b) ./ max(foodValues + b)) + 0.1;
+    probabilities = foodValues ./ sum(foodValues);
 
 %% Onlooker Bee Phase
     i = 1;
     t = 0;
 	while (t < foodSourceSize)
-		if (rand() > probabilities(i))
+        randValue = rand();
+		if (randValue > probabilities(i))
 			t = t + 1;
 
 			% Shake the parameter to be changed
