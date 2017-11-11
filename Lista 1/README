@@ -1,0 +1,10 @@
+
+
+Para executar os experimentos basta ir para a pasta onde os códigos fonte estão e executar ambos os scripts:
+
+>> abcTester.m
+>> psoTester.m
+
+Após as suas execuções os resultados vão estar nas pastas ResultsPSO e ResultsABC.
+
+O relatório do experimento está no arquivo  Relatorio_Lista_1___SBIE.pdf.

@@ -91,7 +91,7 @@ while k<= maxiter
             r1 = rand();
             r2 = rand();
             r3 = rand();
-            v(i,j) = w(k)*v(i,j) + dir*(c1*r1*(y(i,j)-x(i,j)) + c2*r2*(ys(j) - x(i,j)) + + c3*r3*(sys(j) - x(i,j)));
+            v(i,j) = w(k)*v(i,j) + dir*(c1*r1*(y(i,j)-x(i,j)) + c2*r2*(ys(j) - x(i,j)) + c3*r3*(sys(j) - x(i,j)));
             if abs(v(i,j)) > max_v
                 if v(i,j) > 0
                     v(i,j) = max_v;
