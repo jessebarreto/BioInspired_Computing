@@ -1,5 +1,5 @@
 function [result] = plantEvaluator(plantName, pidConstants)
-    
+
     % Laplace Differentiator
     s = tf([1 0], [1]);
 
@@ -38,8 +38,8 @@ function [result] = plantEvaluator(plantName, pidConstants)
     
     [systemTF, systemNoiseTF, evaluationStepAmplitude, evaluationSignalTime, reference, optimalRange] = systemControl(plantName);
     
-    closedLoopSystem = closeLoop(plantName, systemNoiseTF, systemTF, pidConstants)
-
+    closedLoopSystem = closeLoop(plantName, systemNoiseTF, systemTF, pidConstants);
+    
  % 	LC = systemTF * controllerTF / (1 + systemTF * controllerTF);
  % 	C = controllerTF / (1 + systemTF * controllerTF);
 
@@ -71,7 +71,7 @@ function [result] = plantEvaluator(plantName, pidConstants)
 	    [yp, tp] = step(systemTF, stepDataOptions('StepAmplitude', evaluationStepAmplitude));
 
 	    referenceLabel = string('Step');
-	else
+    else
 		[y] = impulse(closedLoopSystem, evaluationSignalTime);
 		ys = impulse(tf(1), evaluationSignalTime);
 		[yp, tp] = impulse(systemTF);
@@ -96,9 +96,10 @@ function [result] = plantEvaluator(plantName, pidConstants)
     ylabel(string('System Response (') + string(systemResponseUnit) + string(')'));
     legend('Plant Response - Open Loop');
     
-    result = systemControlEvaluation(plantName, pidConstants, ...
-        0.95, systemTF, systemNoiseTF, evaluationStepAmplitude, ...
-        evaluationSignalTime, reference)
+    result = 1;
+%     systemControlEvaluation(plantName, pidConstants, ...
+%         0.95, systemTF, systemNoiseTF, evaluationStepAmplitude, ...
+%         evaluationSignalTime, reference);
     
     a = 1;
 

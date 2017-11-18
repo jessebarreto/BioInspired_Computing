@@ -27,7 +27,7 @@ function [result] = systemControlEvaluation(plantName, pidConstants, beta, syste
 
         stepInformation = stepinfo(data, stepTime);
         
-        timeFactor = stepInformation.SettlingTime * stepInformation.RiseTime;
+        timeFactor = stepInformation.SettlingTime - stepInformation.RiseTime;
         
 %         overshootFactor = stepInformation.Overshoot;
        peakFactor = abs(stepInformation.Peak - reference);

@@ -17,7 +17,7 @@ numberOfExperimentsPerParameters = 32;
 maxIterations = 150;
 %                       1                       2                       3                       4                       5                       6                       7                        8
 plantNames = [string('suspension') string('dcmotorspeed') string('dcmotorposition') string('cruisecontrol') string('invertedpendulum') string('aircraftpitch') string('ballbeam') string('professor')];
-plantName = plantNames(5);
+plantName = plantNames(4);
 
 algorithms = [string('PSO') string('OPSO') string('DE') string('ODE')];
 
@@ -28,7 +28,7 @@ ODEParameters = [1 1.0 1.35 0.95 40];
 
 algorithmsParameters = {PSOParameters; OPSOParameters; DEParameters; ODEParameters};
 
-parfor algorithmIndex = 4:numel(algorithms)
+for algorithmIndex = 1:1%numel(algorithms)
 	algorithmParameters = algorithmsParameters{algorithmIndex};
 
 	switch algorithms(algorithmIndex)

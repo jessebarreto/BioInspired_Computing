@@ -153,7 +153,7 @@ function [systemTF, systemNoiseTF, evaluationStepAmplitude, evaluationSignalTime
 
 			systemNoiseTF = 1;
 
-			evaluationSignalTime = 0:0.01:2;
+			evaluationSignalTime = 0:0.001:2;
 			evaluationStepAmplitude = NaN; % Impulse response
 
     		reference = 0;
