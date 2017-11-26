@@ -43,7 +43,7 @@ function OUT=MODE(MODEDat)
 %% Reading parameters from MODEDat
 Generaciones  = MODEDat.MAXGEN;    % Maximum number of generations.
 Xpop          = MODEDat.XPOP;      % Population size.
-Nvar          = MODEDat.NVAR;      % Number of decision variables.
+Nvar          = MODEDat.NVAR;      % Number of decision variables .
 Nobj          = MODEDat.NOBJ;      % Number of objectives.
 Bounds        = MODEDat.FieldD;    % Optimization bounds.
 Initial       = MODEDat.Initial;   % Initialization bounds.
@@ -131,7 +131,7 @@ for n=1:Generaciones
                 if JxChild(xpop,:) <= JxParent(xpop,:)
                     Pop = [Pop; Child(xpop,:)];
                     JxPop = [JxPop; JxChild(xpop,:)];
-                elseif (JxParent(xpop,:)<= JxChild(xpop))
+                elseif (JxParent(xpop,:) <= JxChild(xpop))
                     Pop = [Pop; Parent(xpop,:)];
                     JxPop = [JxPop; JxParent(xpop,:)];
                 else

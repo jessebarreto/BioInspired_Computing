@@ -1,0 +1,34 @@
+This folder contains the source codes for CEC 2009 Multiobjective Optimization Competition.
+
+History
+ v1   Sept.8  2008
+ v1.1 Sept.22 2008: add R2_DTLZ2_M5 R3_DTLZ3_M5 WFG1_M5.
+ v1.2 Oct.2   2008: fix the bugs in CF1-CF4, CF6-CF10, thank Qu Boyang for finding the bugs.
+ v1.3 Oct.6   2008: add cec09.java, thank Santosh Tiwari for providing the source codes.
+ v1.4 Nov.12  2008: fix the bug in UF6 of cec09.m, thank Stephen Chen for finding this bug.
+ v1.5 Nov.14  2008: fix the bugs in UF5 and UF6 of cec09.m, thank Yuping Wang for finding these bugs.
+ v1.6 Nov.18  2008: fix the bugs in CF problems in cec09.m, thank Xueqiang Li for finding these bugs.
+ v1.7 Nov.26  2008: fix the bugs in CF4 and CF5, thank Xueqiang Li for finding these bugs.
+ v1.8 Dec.2   2008: fix the bugs in CF5 and CF7, thank Santosh Tiwari for finding these bugs.
+ v1.9 Apr.21  2009: fix the bugs in CF8-CF10.
+
+The files are: 
+ 1. cec09.m --- The Matlab codes of the test instances.
+ 2. pareto.m --- The Matlab codes to generate the PF and PS of the test instances.
+ 3. xboundary.m --- The Matlab codes to generate the search boundary.
+ 4. generate_front_data.m --- The Matlab codes to generate the PF data files.
+ 5. plot_front.m --- The Matlab codes to plot the PF-PS figures.
+ 6. test_cec09.m --- The Matlab example to call the test functions.
+ 7. test_IGD.m --- The Matlab example to call the IGD metric.
+ 8. IGD.cpp --- The Matlab-C codes of IGD metric. (It could be compiled under Windows and Linux systmes by using command: mex IGD.cpp)
+ 9. cec09.h --- The C++ header file of the test instances.
+10. cec09.cpp --- The C++ source file of the test instances.
+11. cec09m.h --- The C++ header and source file = cec09.h + cec09.cpp. It is used by cec09m.cpp
+12. cec09m.cpp --- The Matlab-C source file of the test instances. (It could be compiled under Windows and Linux systmes by using command: mex cec09m.cpp)
+13. pf_data --- All the PF data files. (each row is an objective vector)
+14. boudnary_data --- The search boundaries of problem R2_DTLZ2_M5, R3_DTLZ3_M5, WFG1_M5.
+15. cec09.java --- The Java source codes of the test problems.
+
+If the source codes are not consist withe report, please use the version in the report. Any comments and suggestions are welcome.
+
+
